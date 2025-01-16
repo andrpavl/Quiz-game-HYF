@@ -141,14 +141,16 @@ function filterQuestions() {
 	const listItem = filteredQuestions
 		.map(({ question, options }) => {
 			return `<li class="question-list-item">
-      <p class="item-question">${question}</p>
-	  ${options
-			.map((item, index) => {
-				return `<span class="item-answer">${index + 1}). ${item.text}</span>`;
-			})
-			.join(" ")}
-    <button class="reveal-btn">Reveal</button>
-	</li>`;
+      					<p class="item-question">${question}</p>
+						${options
+							.map((item, index) => {
+								return `<span class="item-answer">${index + 1}). ${
+									item.text
+								}</span>`;
+							})
+							.join(" ")}
+    					<button class="reveal-btn">Reveal</button>
+					</li>`;
 		})
 		.join(" ");
 
