@@ -1,3 +1,9 @@
+import fetchQuestions from "./fetchQuestions.js";
+import randomSorting from "./utils.js";
+import { sortByName } from "./utils.js";
+import { colorizeOptions } from "./utils.js";
+import { randomizeOptions } from "./utils.js";
+
 const form = document.querySelector(".quiz-form");
 const questionInput = document.querySelector(".question-input");
 const optionsContainer = document.querySelector(".options");
@@ -5,9 +11,9 @@ const randomizeButton = document.getElementById("randomize-btn");
 const submitButton = document.querySelector(".submit-btn");
 const radioButtons = document.querySelectorAll(".answer-radio");
 const questionsList = document.querySelector(".questions-list-js");
-const answerInList = document.querySelector(".item-answer");
 const filterInput = document.querySelector(".filter-input-js");
-const revealBtn = document.querySelectorAll(".reveal-btn");
+const sortButton = document.getElementById("sort-btn");
+const randomSortingButton = document.getElementById("random-sorting-btn");
 
 let options = [];
 let questions = [];
@@ -16,7 +22,7 @@ let questions = [];
 submitButton.addEventListener("click", createQuestionObject);
 
 // Randomizing options on button click
-randomizeButton.addEventListener("click", randomizeOptions);
+randomizeButton.addEventListener("click", () => randomizeOptions(options));
 
 // Adding click event listeners to radio buttons
 radioButtons.forEach((radio) => {
@@ -33,7 +39,29 @@ questionsList.addEventListener("click", (event) => {
 	}
 });
 
+// Sorting of questions list by name
+sortButton.addEventListener("click", () =>
+	sortByName(questions, createQuestionsList)
+);
 
+//Random sorting
+randomSortingButton.addEventListener("click", () =>
+	randomSorting(questions, createQuestionsList)
+);
+
+function storeQuestions() {
+	fetchQuestions()
+		.then((data) => {
+			questions = data;
+			createQuestionsList();
+			filterInput.style.display = questions.length > 0 ? "block" : "none";
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+}
+
+storeQuestions();
 
 function createQuestionObject(evt) {
 	evt.preventDefault();
@@ -76,51 +104,26 @@ function createQuestionObject(evt) {
 		: (filterInput.style.display = "block");
 }
 
-function randomizeOptions() {
-	const optionInputs = Array.from(document.querySelectorAll(".answer-input"));
-	const radioInputs = Array.from(document.querySelectorAll(".answer-radio"));
-
-	options = optionInputs.map((input, index) => ({
-		text: input.value,
-		isCorrect: radioInputs[index].checked,
-	}));
-
-	options.sort(() => Math.random() - 0.5);
-
-	options.forEach((option, index) => {
-		optionInputs[index].value = option.text;
-		radioInputs[index].checked = option.isCorrect;
-	});
-	colorizeOptions();
-}
-
-function colorizeOptions() {
-	const optionInputs = Array.from(document.querySelectorAll(".answer-input"));
-	const radioInputs = Array.from(document.querySelectorAll(".answer-radio"));
-
-	optionInputs.forEach((input, index) => {
-		if (radioInputs[index].checked) {
-			input.style.backgroundColor = "lightgreen";
-		} else {
-			input.style.backgroundColor = "lightcoral";
-		}
-	});
-}
-
 function createQuestionsList() {
 	const listItem = questions
-		.map(({ question, options }) => {
+		.map(({ question, options, explanation }) => {
 			return `<li class="question-list-item">
-      <p class="item-question">${question}</p>
-	  ${options
-			.map((item, index) => {
-				return `<span class="item-answer">${index + 1}). ${item.text}</span>`;
-			})
-			.join(" ")}
-    <button class="reveal-btn">Reveal</button>
-	</li>`;
+                <p class="item-question">${question}</p>
+                ${options
+									.map((item, index) => {
+										return `<span class="item-answer">${index + 1}). ${
+											item.text
+										}</span>
+						
+						`;
+									})
+									.join("")}
+									<hr />
+									<p class="explanation">${explanation}</p>
+                <button class="reveal-btn">Reveal</button>
+            </li>`;
 		})
-		.join(" ");
+		.join("");
 
 	questionsList.innerHTML = listItem;
 }
@@ -160,6 +163,10 @@ function revealAnswer(button) {
 	const currentQuestion = questions[questionIndex];
 
 	const answers = questionItem.querySelectorAll(".item-answer");
+	const explanation = questionItem.querySelector(".explanation");
+
+	explanation.style.display = "block";
+
 	currentQuestion.options.forEach((option, index) => {
 		if (option.isCorrect) {
 			answers[index].style.backgroundColor = "lightgreen";
