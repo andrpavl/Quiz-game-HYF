@@ -5,11 +5,8 @@ const randomizeButton = document.getElementById("randomize-btn");
 const submitButton = document.querySelector(".submit-btn");
 const radioButtons = document.querySelectorAll(".answer-radio");
 const questionsList = document.querySelector(".questions-list-js");
-const answerInList = document.querySelector(".item-answer");
 const filterInput = document.querySelector(".filter-input-js");
-const revealBtn = document.querySelectorAll(".reveal-btn");
 
-let options = [];
 let questions = [];
 
 // Submitting the form and creating the quiz Question object
@@ -32,8 +29,6 @@ questionsList.addEventListener("click", (event) => {
 		revealAnswer(event.target);
 	}
 });
-
-
 
 function createQuestionObject(evt) {
 	evt.preventDefault();
@@ -70,7 +65,11 @@ function createQuestionObject(evt) {
 	}
 
 	console.log(questions);
+
 	form.reset();
+
+	resetOptionColors();
+	
 	questions.length <= 0
 		? (filterInput.style.display = "none")
 		: (filterInput.style.display = "block");
@@ -80,7 +79,7 @@ function randomizeOptions() {
 	const optionInputs = Array.from(document.querySelectorAll(".answer-input"));
 	const radioInputs = Array.from(document.querySelectorAll(".answer-radio"));
 
-	options = optionInputs.map((input, index) => ({
+	const options = optionInputs.map((input, index) => ({
 		text: input.value,
 		isCorrect: radioInputs[index].checked,
 	}));
@@ -167,4 +166,11 @@ function revealAnswer(button) {
 	});
 
 	button.disabled = true;
+}
+
+function resetOptionColors() {
+	const optionInputs = Array.from(document.querySelectorAll(".answer-input"));
+	optionInputs.forEach((input) => {
+		input.style.backgroundColor = "";
+	});
 }

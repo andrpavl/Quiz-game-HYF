@@ -17,7 +17,8 @@ input {
 }
 
 button {
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;}
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
 
 button:hover {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
@@ -195,7 +196,7 @@ form {
     margin-top: 20px;
     width: 20rem;
 
-    @media (width<=768px) {
+    @media (max-width: 768px) {
         position: static;
     }
 }
