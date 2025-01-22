@@ -15,7 +15,6 @@ const filterInput = document.querySelector(".filter-input-js");
 const sortButton = document.getElementById("sort-btn");
 const randomSortingButton = document.getElementById("random-sorting-btn");
 
-let options = [];
 let questions = [];
 
 // Submitting the form and creating the quiz Question object
@@ -38,6 +37,7 @@ questionsList.addEventListener("click", (event) => {
 		revealAnswer(event.target);
 	}
 });
+
 
 // Sorting of questions list by name
 sortButton.addEventListener("click", () =>
@@ -62,6 +62,7 @@ function storeQuestions() {
 }
 
 storeQuestions();
+
 
 function createQuestionObject(evt) {
 	evt.preventDefault();
@@ -98,11 +99,16 @@ function createQuestionObject(evt) {
 	}
 
 	console.log(questions);
+
 	form.reset();
+
+	resetOptionColors();
+	
 	questions.length <= 0
 		? (filterInput.style.display = "none")
 		: (filterInput.style.display = "block");
 }
+
 
 function createQuestionsList() {
 	const listItem = questions
@@ -176,4 +182,11 @@ function revealAnswer(button) {
 	});
 
 	button.disabled = true;
+}
+
+function resetOptionColors() {
+	const optionInputs = Array.from(document.querySelectorAll(".answer-input"));
+	optionInputs.forEach((input) => {
+		input.style.backgroundColor = "";
+	});
 }

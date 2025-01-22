@@ -12,6 +12,18 @@ p {
     margin: 0;
 }
 
+input {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+button {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+button:hover {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
 form {
     display: flex;
     justify-content: center;
@@ -228,7 +240,7 @@ form {
     margin-top: 20px;
     width: 20rem;
 
-    @media (width<=1200px) {
+  @media (max-width:1200px) {
         position: static;
     }
 }
@@ -288,10 +300,18 @@ form {
 
 .incr-btn {
     background-color: lightgreen;
+    cursor: pointer;
 }
 
 .decr-btn {
     background-color: lightsalmon;
+    cursor: pointer;
+
+}
+
+.incr-btn:disabled,
+.decr-btn:disabled {
+    cursor: default;
 }
 
 .p1Score,
@@ -313,7 +333,6 @@ form {
     border-radius: 6px;
     border: none;
     background-color: rgb(207, 194, 10);
-    display: none;
 }
 
 .restart-btn:hover {
