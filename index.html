@@ -46,10 +46,14 @@
         <button type="submit" class="submit-btn">Submit</button>
       </div>
     </form>
-    <input type="text" class="filter-input-js filter-input" placeholder="Find in questions">
+    <div class="filter-sort">
+      <input type="text" class="filter-input-js filter-input" placeholder="Find in questions">
+      <button class="sorting" id="sort-btn">Sort by name</button>
+      <button class="random-sorting-btn sorting" id="random-sorting-btn">Random sorting</button>
+    </div>
     <ul class="questions-list-js question-list"></ul>
   </section>
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
   <script src="./playersScore.js"></script>
 </body>
 
