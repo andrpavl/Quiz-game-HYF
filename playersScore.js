@@ -6,11 +6,12 @@ const scoreContainer = document.getElementById("score");
 const restartBtn = document.getElementById("restart-btn");
 
 startBtn.addEventListener("click", startQuiz);
+
 // Enabling of Start button
 playersSection.addEventListener("change", () => {
-	if (player1Name.value && player2Name.value) {
-		startBtn.disabled = false;
-	}
+	player1Name.value && player2Name.value
+		? (startBtn.disabled = false)
+		: (startBtn.disabled = true);
 });
 
 function startQuiz() {
@@ -22,29 +23,24 @@ function startQuiz() {
     <div>
 		<h3 class="pName">${player1Name.value}</h3>
 		<div class="score-buttons">
-        	<button class="incr-btn p1-btn">Correct</button>
+        	<button class="incr-btn p1-btn" data-action="incr-p1-score">Correct</button>
         	<span class="p1Score">${p1Score}</span>
-        	<button class="decr-btn p1-btn">Wrong</button>
+        	<button class="decr-btn p1-btn" data-action="incr-p2-score">Wrong</button>
 		</div>
 	</div>
 
     <div>
 		<h3 class="pName">${player2Name.value}</h3>
 		<div class="score-buttons">
-        	<button class="incr-btn p2-btn">Correct</button>
+        	<button class="incr-btn p2-btn" data-action="incr-p2-score">Correct</button>
         	<span class="p2Score">${p2Score}</span>
-        	<button class="decr-btn p2-btn">Wrong</button>
-		<div>
+        	<button class="decr-btn p2-btn" data-action="incr-p1-score">Wrong</button>
+		</div>
 	</div>
-    `;
+`;
 
 	const player1Score = document.querySelector(".p1Score");
 	const player2Score = document.querySelector(".p2Score");
-
-	const correctP1 = document.querySelector(".incr-btn.p1-btn");
-	const wrongP1 = document.querySelector(".decr-btn.p1-btn");
-	const correctP2 = document.querySelector(".incr-btn.p2-btn");
-	const wrongP2 = document.querySelector(".decr-btn.p2-btn");
 
 	startBtn.disabled = true;
 	player1Name.disabled = true;
@@ -53,70 +49,32 @@ function startQuiz() {
 	player2Name.value = "";
 
 	const updateButtonState = () => {
-		correctP1.disabled = p1Score === 10;
-		correctP2.disabled = p2Score === 10;
+		const maxScore = p1Score === 10 || p2Score === 10;
 
-		wrongP1.disabled = p1Score === 0;
-		wrongP2.disabled = p2Score === 0;
+		document.querySelectorAll(".incr-btn, .decr-btn").forEach((buttons) => {
+			buttons.disabled = maxScore;
+		});
 
-		let sound = new Audio("assets/524848__mc5__short-brass-fanfare-2.wav");
-		if (p1Score === 10 || p2Score === 10) {
+		player1Score.textContent = p1Score;
+		player2Score.textContent = p2Score;
+
+		if (maxScore) {
+			let sound = new Audio("assets/524848__mc5__short-brass-fanfare-2.wav");
 			sound.play();
 		}
 	};
 
-	correctP1.addEventListener("click", () => {
-		p1Score++;
-		player1Score.textContent = p1Score;
-		updateButtonState();
-	});
-	wrongP1.addEventListener("click", () => {
-		p1Score--;
-		player1Score.textContent = p1Score;
-		updateButtonState();
-	});
-	correctP2.addEventListener("click", () => {
-		p2Score++;
-		player2Score.textContent = p2Score;
-		updateButtonState();
-	});
-	wrongP2.addEventListener("click", () => {
-		p2Score--;
-		player2Score.textContent = p2Score;
+	scoreContainer.addEventListener("click", (evt) => {
+		if (p1Score === 10 || p2Score === 10) return; // Avoiding to sound will be played after game ending
+		if (evt.target.dataset.action === "incr-p1-score") {
+			p1Score++;
+		} else if (evt.target.dataset.action === "incr-p2-score") {
+			p2Score++;
+		}
 		updateButtonState();
 	});
 
 	updateButtonState();
-
-	// const incrementBtn = document.querySelectorAll(".incr-btn");
-	// incrementBtn.forEach((btn) => {
-	// 	btn.addEventListener("click", (e) => {
-	// 		const playerClass = e.currentTarget.nextElementSibling.className;
-	// 		if (playerClass.includes("p1Score")) {
-	// 			p1Score++;
-	// 		} else if (playerClass.includes("p2Score")) {
-	// 			p2Score++;
-	// 		}
-	// 		updateButtonState();
-	// 	});
-	// });
-
-	// const decrementBtn = document.querySelectorAll(".decr-btn");
-	// decrementBtn.forEach((btn) => {
-	// 	btn.addEventListener("click", (e) => {
-	// 		const playerClass = e.currentTarget.previousElementSibling.className;
-	// 		if (playerClass.includes("p1Score") && p1Score > 0) {
-	// 			p1Score--;
-	// 			player1Score.textContent = p1Score;
-	// 		} else if (playerClass.includes("p2Score") && p2Score > 0) {
-	// 			p2Score--;
-	// 			player2Score.textContent = p2Score;
-	// 		}
-	// 		updateButtonState();
-	// 	});
-	// });
-
-	// updateButtonState();
 }
 
 restartBtn.addEventListener("click", restartQuiz);

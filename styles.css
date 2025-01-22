@@ -313,7 +313,6 @@ form {
     border-radius: 6px;
     border: none;
     background-color: rgb(207, 194, 10);
-    display: none;
 }
 
 .restart-btn:hover {
