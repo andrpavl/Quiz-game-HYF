@@ -2,14 +2,55 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz App</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="./assets/favicon_io/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-    <script src="./script.js"></script>
+  <section class="players-container" id="players-container">
+    <label class="player1-label">Player 1:
+      <input type="text" class="p1-input" id="p1-input" placeholder="Enter Players 1 name"></label>
+    <label class="player1-label">Player 2:
+      <input type="text" class="p2-input" id="p2-input" placeholder="Enter Players 2 name"></label>
+    <button id="start-btn" class="start-btn" disabled>Start quiz!</button>
+    <div class="score" id="score"></div>
+    <button class="restart-btn" id="restart-btn" style="display: none">Restart!</button>
+  </section>
+  <section class="create-quiz" id="create-quiz">
+    <h1 class="quiz-title">Wellcome to the Quiz-game!</h1>
+    <form action="" class="quiz-form">
+      <label class="question-label">Your question (max 140 symbols):
+        <input type="text" class="question-input" maxlength="140" placeholder="Enter your question" required>
+      </label>
+      <div class="options">
+        <label>
+          <input type="text" placeholder="Answer 1" class="answer-input">
+          <input type="radio" name="answer-correct" class="answer-radio" required></label>
+        <label>
+          <input type="text" placeholder="Answer 2" class="answer-input">
+          <input type="radio" name="answer-correct" class="answer-radio" required></label>
+        <label>
+          <input type="text" placeholder="Answer 3" class="answer-input">
+          <input type="radio" name="answer-correct" class="answer-radio" required></label>
+        <label>
+          <input type="text" placeholder="Answer 4" class="answer-input">
+          <input type="radio" name="answer-correct" class="answer-radio" required></label>
+      </div>
+      <label class="explan-label">Explanation: <input type="text" class="explan-input"
+          placeholder="Enter the explanation" required></label>
+      <div class="buttons">
+        <button type="button" id="randomize-btn" class="randomize-btn">Randomize answers</button>
+        <button type="submit" class="submit-btn">Submit</button>
+      </div>
+    </form>
+    <input type="text" class="filter-input-js filter-input" placeholder="Find in questions">
+    <ul class="questions-list-js question-list"></ul>
+  </section>
+  <script src="script.js"></script>
+  <script src="./playersScore.js"></script>
 </body>
 
 </html>
