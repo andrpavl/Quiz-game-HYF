@@ -228,7 +228,7 @@ form {
     margin-top: 20px;
     width: 20rem;
 
-    @media (width<=1200px) {
+    @media (max-width:1200px) {
         position: static;
     }
 }
