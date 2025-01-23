@@ -111,7 +111,7 @@ function createQuestionObject(evt) {
 function createQuestionsList() {
 	const listItem = questions
 		.map(({ question, options, explanation }) => {
-			return `<li class="question-list-item">
+			return `<li class="question-list-item animate__animated animate__zoomIn animate__slower">
                 <p class="item-question">${question}</p>
                 ${options
 									.map((item, index) => {
