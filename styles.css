@@ -338,3 +338,26 @@ form {
 .restart-btn:hover {
     outline: 1px solid rgb(182, 76, 0);
 }
+
+.search-container {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+
+.find-btn {
+    padding: 6px;
+    margin-left: 10px;
+    border: 1px solid grey;
+    border-radius: 6px;
+    background-color: lightblue;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', sans-serif;
+    font-size: 14px;
+    transition: transform 500ms ease-out;
+}
+
+.find-btn:hover{
+    transform: scale(1.1);
+}

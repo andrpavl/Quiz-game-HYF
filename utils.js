@@ -38,3 +38,11 @@ export function randomizeOptions(optionsArray) {
 	});
 	colorizeOptions();
 }
+
+
+export function resetOptionColors() {
+	const optionInputs = Array.from(document.querySelectorAll(".answer-input"));
+	optionInputs.forEach((input) => {
+		input.style.backgroundColor = "";
+	});
+}
