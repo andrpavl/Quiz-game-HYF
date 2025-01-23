@@ -183,8 +183,8 @@ form {
 .item-question {
     text-align: center;
     font-style: italic;
+    font-family: "Comfortaa";
     font-size: 20px;
-    font-weight: 400;
     margin-bottom: 12px;
     color: burlywood;
 }
