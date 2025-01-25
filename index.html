@@ -74,11 +74,17 @@
       </div>
     </form>
     <div class="filter-sort">
-      <label class="search-container">
-        <input type="text" class="filter-input-js filter-input" placeholder="Find in questions">
-        <button class="find-btn" id="find-btn">Find
+      <div class="name-search">
+        <label class="search-container">
+          <input type="text" class="filter-input-js filter-input" placeholder="Find in questions">
+        </label>
+        <button class="find-btn" id="find-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="16" fill="currentColor">
+            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1" fill="none" />
+            <line x1="16.5" y1="16.5" x2="22" y2="22" stroke="currentColor" stroke-width="1" stroke-linecap="round" />
+          </svg>
         </button>
-      </label>
+      </div>
       <div class="sort-random-buttons">
         <button class="sorting" id="sort-btn">Sort by name</button>
         <button class="random-sorting-btn sorting" id="random-sorting-btn">Random sorting</button>
