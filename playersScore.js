@@ -4,8 +4,12 @@ const startBtn = document.getElementById("start-btn");
 const playersSection = document.getElementById("players-container");
 const scoreContainer = document.getElementById("score");
 const restartBtn = document.getElementById("restart-btn");
+const nameInputBlock = document.querySelector(".start-container");
 
 startBtn.addEventListener("click", startQuiz);
+
+let p1Score = 0;
+let p2Score = 0;
 
 // Enabling of Start button
 playersSection.addEventListener("change", () => {
@@ -15,9 +19,8 @@ playersSection.addEventListener("change", () => {
 });
 
 function startQuiz() {
-	let p1Score = 0;
-	let p2Score = 0;
 	restartBtn.style.display = "block";
+	nameInputBlock.style.display = "none";
 
 	scoreContainer.innerHTML = `
     <div>
@@ -41,12 +44,6 @@ function startQuiz() {
 
 	const player1Score = document.querySelector(".p1Score");
 	const player2Score = document.querySelector(".p2Score");
-
-	startBtn.disabled = true;
-	player1Name.disabled = true;
-	player2Name.disabled = true;
-	player1Name.value = "";
-	player2Name.value = "";
 
 	const updateButtonState = () => {
 		const maxScore = p1Score === 10 || p2Score === 10;
@@ -82,8 +79,11 @@ restartBtn.addEventListener("click", restartQuiz);
 function restartQuiz() {
 	scoreContainer.innerHTML = ``;
 
-	startBtn.disabled = false;
-	player1Name.disabled = false;
-	player2Name.disabled = false;
+	startBtn.disabled = true;
 	restartBtn.style.display = "none";
+	nameInputBlock.style.display = "flex";
+	player1Name.value = "";
+	player2Name.value = "";
+	p1Score = 0;
+	p2Score = 0;
 }
