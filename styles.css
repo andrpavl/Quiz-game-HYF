@@ -1,6 +1,17 @@
+:root {
+    --primary-font: 'Comfortaa', sans-serif;
+    --accent-font: 'Oldenburg';
+    --highlight-font: 'Mystery Quest';
+
+    --border-radius8: 8px;
+    --border-radius6: 6px;
+
+    --padding6: 6px;
+    --padding8: 8px;
+}
+
 body {
     background: rgb(182, 218, 180);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 ul,
@@ -20,7 +31,7 @@ input {
 
 button {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    font-family: "Oldenburg";
+    font-family: var(--accent-font);
 }
 
 button:hover {
@@ -35,7 +46,7 @@ form {
 
 .quiz-title {
     text-align: center;
-    font-family: "Mystery Quest";
+    font-family: var(--highlight-font);
     font-weight: 500;
     font-size: 2.5rem;
     text-align: center;
@@ -57,8 +68,8 @@ form {
 }
 
 .question-input {
-    padding: 8px;
-    border-radius: 8px;
+    padding: var(--padding8);
+    border-radius: var(--border-radius8);
     border: none;
     font-style: italic;
 
@@ -82,8 +93,8 @@ form {
 .answer-input {
     border: 1px solid grey;
     font-size: 18px;
-    padding: 6px;
-    border-radius: 8px;
+    padding: var(--padding6);
+    border-radius: var(--border-radius8);
     background-color: beige;
     font-style: italic;
 
@@ -103,8 +114,8 @@ form {
 }
 
 .explan-input {
-    padding: 8px;
-    border-radius: 8px;
+    padding: var(--padding8);
+    border-radius: var(--border-radius8);
     outline: 1px grey solid;
     border: none;
     font-style: italic;
@@ -125,7 +136,7 @@ form {
     background: goldenrod;
     height: 40px;
 
-    border-radius: 6px;
+    border-radius: var(--border-radius6);
     border-color: greenyellow;
 
     font-size: 18px;
@@ -165,8 +176,8 @@ form {
 
 .question-list-item {
     border: 1px grey solid;
-    padding: 8px;
-    border-radius: 6px;
+    padding: var(--padding8);
+    border-radius: var(--border-radius6);
     background: #266083d6;
 
     width: calc(100% / 3 - 20px);
@@ -183,7 +194,7 @@ form {
 .item-question {
     text-align: center;
     font-style: italic;
-    font-family: "Comfortaa";
+    font-family: var(--primary-font);
     font-size: 20px;
     margin-bottom: 12px;
     color: burlywood;
@@ -192,8 +203,8 @@ form {
 .item-answer {
     color: aliceblue;
     margin-bottom: 8px;
-    padding: 6px;
-    border-radius: 6px;
+    padding: var(--padding6);
+    border-radius: var(--border-radius6);
     font-family: "Neucha";
     letter-spacing: 1.7;
     font-weight: 500;
@@ -233,8 +244,8 @@ form {
     margin-left: auto;
     margin-right: auto;
     margin-top: 30px;
-    padding: 6px;
-    border-radius: 6px;
+    padding: var(--padding6);
+    border-radius: var(--border-radius6);
     border: 1px slategrey solid;
     font-style: italic;
 
@@ -259,8 +270,8 @@ form {
 }
 
 .sorting {
-    padding: 6px;
-    border-radius: 6px;
+    padding: var(--padding6);
+    border-radius: var(--border-radius6);
     border: 1px solid gray;
 
     font-size: 14px;
@@ -296,8 +307,8 @@ form {
 
 .start-btn {
     width: 70%;
-    padding: 6px;
-    border-radius: 8px;
+    padding: var(--padding6);
+    border-radius: var(--border-radius8);
     border: 1px solid grey;
     font-size: 1rem;
     font-weight: 700;
@@ -311,10 +322,10 @@ form {
 
 .p1-input,
 .p2-input {
-    padding: 8px;
+    padding: var(--padding8);
     border: 1px solid gray;
     background-color: lightblue;
-    border-radius: 8px;
+    border-radius: var(--border-radius8)
 }
 
 .p1-input::placeholder,
@@ -332,15 +343,15 @@ form {
 
 .pName {
     text-align: center;
-    font-family: 'Comfortaa', sans-serif;
+    font-family: var(--primary-font);
     font-size: 1.5rem;
     margin: 10px auto;
 }
 
 .p1-btn,
 .p2-btn {
-    padding: 8px;
-    border-radius: 8px;
+    padding: var(--padding8);
+    border-radius: var(--border-radius8);
     border: 1px solid darkslategray;
     font-size: 16px;
 }
@@ -374,10 +385,10 @@ form {
 }
 
 .restart-btn {
-    padding: 8px;
+    padding: var(--padding8);
     font-size: 0.9rem;
 
-    border-radius: 6px;
+    border-radius: var(--border-radius6);
     border: none;
     background-color: rgb(207, 194, 10);
 }
@@ -395,10 +406,10 @@ form {
 
 
 .find-btn {
-    padding: 6px;
+    padding: var(--padding6);
     margin-left: 10px;
     border: 1px solid grey;
-    border-radius: 6px;
+    border-radius: var(--border-radius6);
     background-color: lightblue;
     font-size: 14px;
     transition: transform 500ms ease-out;
@@ -412,6 +423,79 @@ form {
 .player1-label,
 .question-label,
 .explan-label {
-    font-family: "Comfortaa";
+    font-family: var(--primary-font);
     font-weight: 600;
 }
+
+.icon-search {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    z-index: 32;
+}
+
+.start-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styling of hint block */
+
+.hint-block {
+    width: 20rem;
+
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    text-align: center;
+
+    background-color: rgba(230, 218, 198, 0.8);
+
+    padding: 0.8rem;
+    border-radius: 30px;
+    color: rgb(58, 58, 58);
+
+
+
+    @media (max-width:1200px) {
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 16rem;
+    margin-top: 9rem;
+    }
+
+}
+
+.hint-title {
+    margin: 0;
+    font-family: var(--primary-font);
+    margin-bottom: 10px;
+}
+
+.hint-text {
+    font-family: var(--accent-font);
+}
+
+.close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding6);
+    border-radius: 50%; 
+    transition: background-color 0.3s ease;
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  .close-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }

@@ -17,6 +17,7 @@ const randomSortingButton = document.getElementById("random-sorting-btn");
 const findButton = document.getElementById("find-btn");
 
 let questions = [];
+let options = [];
 
 // Submitting the form and creating the quiz Question object
 submitButton.addEventListener("click", createQuestionObject);
@@ -188,4 +189,3 @@ function revealAnswer(button) {
 
 	button.disabled = true;
 }
-

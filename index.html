@@ -20,14 +20,33 @@
     <h1 class="quiz-title animate__animated animate__bounceInDown animate__slower">Wellcome to the Quiz-game!</h1>
     <!-- Section for inputting players names and their scores -->
     <section class="players-container animate__animated animate__slideInLeft" id="players-container">
-      <label class="player1-label">Player 1:
-        <input type="text" class="p1-input" id="p1-input" placeholder="Enter Player's 1 name"></label>
-      <label class="player1-label">Player 2:
-        <input type="text" class="p2-input" id="p2-input" placeholder="Enter Player's 2 name"></label>
-      <button id="start-btn" class="start-btn" disabled>Start quiz!</button>
+      <div class="start-container"><label class="player1-label">Player 1:
+          <input type="text" class="p1-input" id="p1-input" placeholder="Enter Player's 1 name"
+            autocomplete="off"></label>
+        <label class="player1-label">Player 2:
+          <input type="text" class="p2-input" id="p2-input" placeholder="Enter Player's 2 name"
+            autocomplete="off"></label>
+        <button id="start-btn" class="start-btn" disabled>Start quiz!</button>
+      </div>
       <div class="score" id="score"></div>
       <button class="restart-btn" id="restart-btn" style="display: none">Restart!</button>
     </section>
+    <!-- Hint container -->
+    <div class="hint-block animate__animated animate__slideInRight">
+      <button class="close-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </button>
+
+      <h3 class="hint-title">Hint to the game:</h3>
+      <p class="hint-text">In this game two players may start with inputting of their names. After click on "Start Quiz"
+        score counter will apear. After that they can create
+        their own
+        questions (will be shown in the end of list) or start playing with default questions. </p>
+      <span class="hint-text">Enjoy the game!</span>
+    </div>
     <!-- Section for creating of users own questions -->
     <form class="quiz-form">
       <label class="question-label">Your question (max 140 symbols):
@@ -57,8 +76,8 @@
     <div class="filter-sort">
       <label class="search-container">
         <input type="text" class="filter-input-js filter-input" placeholder="Find in questions">
-
-        <button class="find-btn" id="find-btn">Find</button>
+        <button class="find-btn" id="find-btn">Find
+        </button>
       </label>
       <div class="sort-random-buttons">
         <button class="sorting" id="sort-btn">Sort by name</button>
@@ -69,6 +88,7 @@
   </section>
   <script type="module" src="script.js"></script>
   <script src="./playersScore.js"></script>
+  <script src="./hint.js"></script>
 </body>
 
 </html>
