@@ -375,7 +375,8 @@ form {
 .p1Score,
 .p2Score {
     font-size: 2.5rem;
-    margin: 0 10px
+    margin: 0 10px;
+    font-family: var(--highlight-font);
 }
 
 .score-buttons {
