@@ -7,21 +7,48 @@
   <title>Quiz App</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="./assets/favicon_io/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Delius&family=Mystery+Quest&family=Neucha&family=Oldenburg&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body>
-  <section class="players-container" id="players-container">
-    <label class="player1-label">Player 1:
-      <input type="text" class="p1-input" id="p1-input" placeholder="Enter Players 1 name"></label>
-    <label class="player1-label">Player 2:
-      <input type="text" class="p2-input" id="p2-input" placeholder="Enter Players 2 name"></label>
-    <button id="start-btn" class="start-btn" disabled>Start quiz!</button>
-    <div class="score" id="score"></div>
-    <button class="restart-btn" id="restart-btn" style="display: none">Restart!</button>
-  </section>
   <section class="create-quiz" id="create-quiz">
-    <h1 class="quiz-title">Wellcome to the Quiz-game!</h1>
-    <form action="" class="quiz-form">
+    <h1 class="quiz-title animate__animated animate__bounceInDown animate__slower">Wellcome to the Quiz-game!</h1>
+    <!-- Section for inputting players names and their scores -->
+    <section class="players-container animate__animated animate__slideInLeft" id="players-container">
+      <div class="start-container"><label class="player1-label">Player 1:
+          <input type="text" class="p1-input" id="p1-input" placeholder="Enter Player's 1 name"
+            autocomplete="off"></label>
+        <label class="player1-label">Player 2:
+          <input type="text" class="p2-input" id="p2-input" placeholder="Enter Player's 2 name"
+            autocomplete="off"></label>
+        <button id="start-btn" class="start-btn" disabled>Start quiz!</button>
+      </div>
+      <div class="score" id="score"></div>
+      <button class="restart-btn" id="restart-btn" style="display: none">Restart!</button>
+    </section>
+    <!-- Hint container -->
+    <div class="hint-block animate__animated animate__slideInRight">
+      <button class="close-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </button>
+
+      <h3 class="hint-title">Hint to the game:</h3>
+      <p class="hint-text">In this game two players may start with inputting of their names. After click on "Start Quiz"
+        score counter will apear. After that they can create
+        their own
+        questions (will be shown in the end of list) or start playing with default questions. </p>
+      <span class="hint-text">Enjoy the game!</span>
+    </div>
+    <!-- Section for creating of users own questions -->
+    <form class="quiz-form">
       <label class="question-label">Your question (max 140 symbols):
         <input type="text" class="question-input" maxlength="140" placeholder="Enter your question" required>
       </label>
@@ -43,18 +70,31 @@
           placeholder="Enter the explanation" required></label>
       <div class="buttons">
         <button type="button" id="randomize-btn" class="randomize-btn">Randomize answers</button>
-        <button type="submit" class="submit-btn">Submit</button>
+        <button type="submit" class="submit-btn ">Submit</button>
       </div>
     </form>
     <div class="filter-sort">
-      <input type="text" class="filter-input-js filter-input" placeholder="Find in questions">
-      <button class="sorting" id="sort-btn">Sort by name</button>
-      <button class="random-sorting-btn sorting" id="random-sorting-btn">Random sorting</button>
+      <div class="name-search">
+        <label class="search-container">
+          <input type="text" class="filter-input-js filter-input" placeholder="Find in questions">
+        </label>
+        <button class="find-btn" id="find-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="16" fill="currentColor">
+            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1" fill="none" />
+            <line x1="16.5" y1="16.5" x2="22" y2="22" stroke="currentColor" stroke-width="1" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+      <div class="sort-random-buttons">
+        <button class="sorting" id="sort-btn">Sort by name</button>
+        <button class="random-sorting-btn sorting" id="random-sorting-btn">Random sorting</button>
+      </div>
     </div>
     <ul class="questions-list-js question-list"></ul>
   </section>
   <script type="module" src="script.js"></script>
   <script src="./playersScore.js"></script>
+  <script src="./hint.js"></script>
 </body>
 
 </html>

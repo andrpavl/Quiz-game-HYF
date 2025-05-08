@@ -3,10 +3,10 @@ import randomSorting from "./utils.js";
 import { sortByName } from "./utils.js";
 import { colorizeOptions } from "./utils.js";
 import { randomizeOptions } from "./utils.js";
+import { resetOptionColors } from "./utils.js";
 
 const form = document.querySelector(".quiz-form");
 const questionInput = document.querySelector(".question-input");
-const optionsContainer = document.querySelector(".options");
 const randomizeButton = document.getElementById("randomize-btn");
 const submitButton = document.querySelector(".submit-btn");
 const radioButtons = document.querySelectorAll(".answer-radio");
@@ -14,8 +14,10 @@ const questionsList = document.querySelector(".questions-list-js");
 const filterInput = document.querySelector(".filter-input-js");
 const sortButton = document.getElementById("sort-btn");
 const randomSortingButton = document.getElementById("random-sorting-btn");
+const findButton = document.getElementById("find-btn");
 
 let questions = [];
+let options = [];
 
 // Submitting the form and creating the quiz Question object
 submitButton.addEventListener("click", createQuestionObject);
@@ -29,7 +31,7 @@ radioButtons.forEach((radio) => {
 });
 
 // Filtering questions
-filterInput.addEventListener("input", filterQuestions);
+findButton.addEventListener("click", filterQuestions);
 
 // Reveal question
 questionsList.addEventListener("click", (event) => {
@@ -37,7 +39,6 @@ questionsList.addEventListener("click", (event) => {
 		revealAnswer(event.target);
 	}
 });
-
 
 // Sorting of questions list by name
 sortButton.addEventListener("click", () =>
@@ -62,7 +63,6 @@ function storeQuestions() {
 }
 
 storeQuestions();
-
 
 function createQuestionObject(evt) {
 	evt.preventDefault();
@@ -103,12 +103,11 @@ function createQuestionObject(evt) {
 	form.reset();
 
 	resetOptionColors();
-	
+
 	questions.length <= 0
 		? (filterInput.style.display = "none")
 		: (filterInput.style.display = "block");
 }
-
 
 function createQuestionsList() {
 	const listItem = questions
@@ -145,7 +144,7 @@ function filterQuestions() {
 	);
 
 	const listItem = filteredQuestions
-		.map(({ question, options }) => {
+		.map(({ question, options, explanation }) => {
 			return `<li class="question-list-item">
       					<p class="item-question">${question}</p>
 						${options
@@ -155,12 +154,19 @@ function filterQuestions() {
 								}</span>`;
 							})
 							.join(" ")}
+							<hr />
+							<p class="explanation">${explanation}</p>
     					<button class="reveal-btn">Reveal</button>
 					</li>`;
 		})
 		.join(" ");
 
-	questionsList.innerHTML = listItem;
+	const noResult = `<p>Can not find anything. Please, try something else</p>
+`;
+
+	filteredQuestions.length
+		? (questionsList.innerHTML = listItem)
+		: (questionsList.innerHTML = noResult);
 }
 
 function revealAnswer(button) {
@@ -182,11 +188,4 @@ function revealAnswer(button) {
 	});
 
 	button.disabled = true;
-}
-
-function resetOptionColors() {
-	const optionInputs = Array.from(document.querySelectorAll(".answer-input"));
-	optionInputs.forEach((input) => {
-		input.style.backgroundColor = "";
-	});
 }
